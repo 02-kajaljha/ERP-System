@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Student ERP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 3px solid #0056b3;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .student-info div {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease-in-out;
+        }
+        .student-info div:hover {
+            background-color: #e9f1ff;
+            border-color: #007BFF;
+        }
+        h3 {
+            font-size: 1.2em;
+            color: #007BFF;
+            margin-bottom: 8px;
+        }
+        p {
+            font-size: 1.1em;
+            color: #555;
+        }
+        .logout-btn {
+            display: inline-block;
+            background-color: #FF5733;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.1em;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+        .logout-btn:hover {
+            background-color: #e04e2a;
+        }
+        .logout-btn:active {
+            background-color: #c83e1d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Student ERP System</h1>
+    </header>
+    
+    <div class="container">
+        <h2 style="text-align: center; color: #007BFF;" id="welcomeMessage">Loading...</h2>
+        <p style="text-align: center; font-size: 1.1em; color: #555;">Below are your details:</p>
+        
+        <div class="student-info" id="studentInfo">
+            <!-- Student details will be populated here -->
+        </div>
+
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+
+    <script>
+        // Fetch student details from the backend API
+        fetch('student/details')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Student not found');
+                }
+                return response.json();
+            })
+            .then(student => {
+                // Populate student details dynamically
+                document.getElementById('welcomeMessage').innerText = `Welcome, ${student.username}!`;
+                
+                const studentInfoDiv = document.getElementById('studentInfo');
+                const details = [
+                    { label: 'Student ID', value: student.id },
+                    { label: 'Username', value: student.username },
+                    { label: 'Email', value: student.email },
+                    { label: 'Father\'s Name', value: student.fatherName },
+                    { label: 'Mother\'s Name', value: student.motherName },
+                    { label: 'Date of Birth', value: student.dob },
+                    { label: 'College', value: student.college },
+                    { label: 'Course', value: student.course },
+                    { label: 'Year', value: student.year },
+                    { label: 'Branch', value: student.branch },
+                    { label: 'Section', value: student.section },
+                    { label: 'Class Roll No', value: student.classRollNo },
+                    { label: 'University Roll No', value: student.universityRollNo },
+                    { label: 'High School %', value: student.highSchoolPercentage },
+                    { label: 'Intermediate %', value: student.intermediatePercentage },
+                    { label: 'Role', value: student.role }
+                ];
+
+                studentInfoDiv.innerHTML = details.map(detail => {
+                    return `
+                        <div>
+                            <h3>${detail.label}</h3>
+                            <p>${detail.value}</p>
+                        </div>
+                    `;
+                }).join('');
+            })
+            .catch(error => {
+                document.getElementById('welcomeMessage').innerText = 'Error loading student details';
+                console.error(error);
+            });
+    </script>
+</body>
+</html>

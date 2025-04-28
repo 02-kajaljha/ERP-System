@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Student ERP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .student-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .student-info div {
+            flex: 1 1 calc(33% - 20px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            box-sizing: border-box;
+        }
+        .logout-btn {
+            background-color: #FF5733;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .logout-btn:hover {
+            background-color: #e04e2a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Student ERP System</h1>
+    </header>
+    
+    <div class="container">
+        <h2>Welcome, <span th:text="${student.username}">Student</span>!</h2>
+        <p>Below are your details:</p>
+        
+        <div class="student-info">
+            <div>
+                <h3>Student ID:</h3>
+                <p th:text="${student.id}">12345678</p>
+            </div>
+            <div>
+                <h3>Email:</h3>
+                <p th:text="${student.email}">johndoe@example.com</p>
+            </div>
+            <div>
+                <h3>Father's Name:</h3>
+                <p th:text="${student.fatherName}">Father Name</p>
+            </div>
+            <div>
+                <h3>Mother's Name:</h3>
+                <p th:text="${student.motherName}">Mother Name</p>
+            </div>
+            <div>
+                <h3>Date of Birth:</h3>
+                <p th:text="${student.dob}">2000-01-01</p>
+            </div>
+            <div>
+                <h3>College:</h3>
+                <p th:text="${student.college}">XYZ College</p>
+            </div>
+            <div>
+                <h3>Course:</h3>
+                <p th:text="${student.course}">Computer Science</p>
+            </div>
+            <div>
+                <h3>Year:</h3>
+                <p th:text="${student.year}">3rd</p>
+            </div>
+            <div>
+                <h3>Branch:</h3>
+                <p th:text="${student.branch}">CSE</p>
+            </div>
+            <div>
+                <h3>Section:</h3>
+                <p th:text="${student.section}">A</p>
+            </div>
+            <div>
+                <h3>Class Roll No:</h3>
+                <p th:text="${student.classRollNo}">21</p>
+            </div>
+            <div>
+                <h3>University Roll No:</h3>
+                <p th:text="${student.universityRollNo}">190041021</p>
+            </div>
+            <div>
+                <h3>High School %:</h3>
+                <p th:text="${student.highSchoolPercentage}">90.5</p>
+            </div>
+            <div>
+                <h3>Intermediate %:</h3>
+                <p th:text="${student.intermediatePercentage}">89.2</p>
+            </div>
+            <div>
+                <h3>Role:</h3>
+                <p th:text="${student.role}">student</p>
+            </div>
+        </div>
+
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+</body>
+</html>

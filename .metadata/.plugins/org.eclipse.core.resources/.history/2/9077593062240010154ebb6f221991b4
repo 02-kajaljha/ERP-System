@@ -1,0 +1,45 @@
+package com.example.ErpManageSys;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+import java.util.Optional;
+import org.springframework.http.ResponseEntity;
+
+@RestController
+@RequestMapping("/user")
+public class Controller {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @GetMapping("/details")
+    public ResponseEntity<?> getUserDetails() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String idString = auth.getName(); 
+        int id = Integer.parseInt(idString);
+
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            String role = user.getRole();
+
+            if (role.equalsIgnoreCase("student")) {
+                Optional<Student> studentOptional = studentRepository.findById(id);
+                return studentOptional
+                        .map(student -> ResponseEntity.ok(student))
+                        .orElseGet(() -> ResponseEntity.notFound().build());
+            } else {
+                return ResponseEntity.badRequest().body("Role is not student");
+            }
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+}

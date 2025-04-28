@@ -1,0 +1,40 @@
+package com.example.ErpManageSys;
+
+import java.io.IOException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) 
+            throws ServletException, IOException {
+        
+        boolean isStudent = authentication.getAuthorities().stream()
+                .anyMatch(granted -> granted.getAuthority().equalsIgnoreCase("ROLE_STUDENT"));
+        
+        boolean isFaculty = authentication.getAuthorities().stream()
+                .anyMatch(granted -> granted.getAuthority().equalsIgnoreCase("ROLE_FACULTY"));
+        
+        // First check if there's a saved request to redirect to
+        String targetUrl = request.getParameter("continue");
+
+        if (targetUrl == null || targetUrl.isEmpty()) {
+            // No saved URL, use role-based redirection
+            if (isStudent) {
+                targetUrl = "/user/student";
+            } else if (isFaculty) {
+                targetUrl = "/user/faculty";
+            } else {
+                targetUrl = "/default"; // Default page if no role matches
+            }
+        }
+        
+        setDefaultTargetUrl(targetUrl);
+        
+        super.onAuthenticationSuccess(request, response, authentication);
+    }
+}

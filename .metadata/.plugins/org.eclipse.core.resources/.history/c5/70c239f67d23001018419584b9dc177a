@@ -1,0 +1,6 @@
+package com.example.ErpManageSys;
+
+@Entity 
+public class User {
+
+}

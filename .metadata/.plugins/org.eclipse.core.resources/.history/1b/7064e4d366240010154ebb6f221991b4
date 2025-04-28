@@ -1,0 +1,36 @@
+package com.example.ErpManageSys;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class StudentController {
+
+    @Autowired
+    private StudentService studentService;
+
+    @GetMapping("/details")
+    public ResponseEntity<?> getStudentDetails() {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String studentId = loggedInUser.getUsername();
+
+        try {
+            System.out.println("Fetching student with ID: " + studentId);  // Debugging log
+
+            Student student = studentService.getStudentById(Integer.parseInt(studentId));
+            if (student != null) {
+                System.out.println("Student found: " + student);  // Debugging log
+                return ResponseEntity.ok(student);
+            } else {
+                System.out.println("Student not found for ID: " + studentId);  // Debugging log
+                return ResponseEntity.status(404).body("Student not found");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Internal server error");
+        }
+    }
+}

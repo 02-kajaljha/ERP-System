@@ -1,0 +1,11 @@
+package com.example.ErpManageSys;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class MyUserDetailService implements UserDetailsService{
+	
+	@Autowired
+	private UserRepository repository;
+	
+	
+}

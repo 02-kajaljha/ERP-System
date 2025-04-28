@@ -1,0 +1,21 @@
+package com.example.ErpManageSys;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@org.springframework.stereotype.Controller
+public class Controller {
+
+    @GetMapping("/login")
+    public String login() {
+        return "custom_login"; 
+    }
+    
+    @GetMapping("/user/student")
+    public String handleStudent() {
+    	return "student";
+    }
+    
+    @GetMapping("/user/faculty")
+    public String handleFaculty() {
+    	return "faculty";
+    }
+}

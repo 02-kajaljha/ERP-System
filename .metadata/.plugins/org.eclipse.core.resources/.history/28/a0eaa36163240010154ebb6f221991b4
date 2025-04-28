@@ -1,0 +1,15 @@
+package com.example.ErpManageSys;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service 
+public class StudentService {
+
+	@Autowired
+	private StudentRepository studentRepository;
+	
+	public Student getStudentById(int id) {
+		return studentRepository.findById(id);
+	}
+}

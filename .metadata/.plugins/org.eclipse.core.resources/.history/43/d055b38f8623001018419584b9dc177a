@@ -1,0 +1,26 @@
+package com.example.ErpManageSys;
+
+import java.io.IOException;
+
+import org.springframework.security.core.Authentication;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+
+public class SuccessHandler {
+
+	@Override
+	public void onAuthenticationSucess(HttpServletRequest request, HttpServletResponse response,Authentication authentication) throws ServletException,IOException{
+		
+		boolean isStudent=authentication.getAuthorities().stream() 
+							.anyMatch(granted->granted.getAuthority().equals("ROLE_STUDENT"));
+		
+		if(isStudent) {
+			setDefaultTargetUrl("/user/student");
+		}else {
+			setDefaultTargetUrl("/user/faculty"); 
+		}
+		
+		super.onAuthenticationSuccess(request,response,authentication); 
+	}
+}

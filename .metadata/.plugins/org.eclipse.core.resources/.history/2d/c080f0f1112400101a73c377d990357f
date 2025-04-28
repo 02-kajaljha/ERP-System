@@ -1,0 +1,28 @@
+package com.example.ErpManageSys;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class StudentController {
+
+	@Autowired
+	private StudentService studentService;
+	
+	@GetMapping("/details")
+	public Student getStudentDetails() {
+		
+		User loggedInUser=(User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String studentId=loggedInUser.getUsername();
+		
+		Student student =studentService.getStudentById(Integer.parseInt(studentId));
+		
+		if(student!=null) {
+			return student;
+		}else {
+			return null;
+		}
+	}
+}

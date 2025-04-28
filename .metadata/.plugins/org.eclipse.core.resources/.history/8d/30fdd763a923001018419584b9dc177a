@@ -1,0 +1,43 @@
+package com.example.ErpManageSys;
+
+import java.io.IOException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class SuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) 
+            throws ServletException, IOException {
+
+        // Retrieve the "continue" parameter from the request, which contains the URL user originally requested
+        String continueUrl = request.getParameter("continue");
+
+        // If "continue" exists, redirect to it after login
+        if (continueUrl != null && !continueUrl.isEmpty()) {
+            // Ensure the redirect URL is valid and trusted
+            setDefaultTargetUrl(continueUrl);
+        } else {
+            // Otherwise, redirect to a default page based on user roles
+            boolean isStudent = authentication.getAuthorities().stream()
+                    .anyMatch(granted -> granted.getAuthority().equalsIgnoreCase("ROLE_STUDENT"));
+            
+            boolean isFaculty = authentication.getAuthorities().stream()
+                    .anyMatch(granted -> granted.getAuthority().equalsIgnoreCase("ROLE_FACULTY"));
+            
+            if (isStudent) {
+                setDefaultTargetUrl("/user/student");
+            } else if (isFaculty) {
+                setDefaultTargetUrl("/user/faculty");
+            } else {
+                setDefaultTargetUrl("/default"); // Default page if no role matches
+            }
+        }
+        
+        // Proceed with the redirection
+        super.onAuthenticationSuccess(request, response, authentication);
+    }
+}

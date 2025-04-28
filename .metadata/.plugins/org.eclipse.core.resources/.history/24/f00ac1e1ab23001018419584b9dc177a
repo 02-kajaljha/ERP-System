@@ -1,0 +1,26 @@
+@Override
+public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
+        throws ServletException, IOException {
+
+    // Log the roles assigned to the authenticated user
+    System.out.println("Roles: " + authentication.getAuthorities());
+
+    // Check if the user has the role "student" (without "ROLE_" prefix)
+    boolean isStudent = authentication.getAuthorities().stream()
+            .anyMatch(granted -> granted.getAuthority().equalsIgnoreCase("student"));
+
+    // Check if the user has the role "faculty" (without "ROLE_" prefix)
+    boolean isFaculty = authentication.getAuthorities().stream()
+            .anyMatch(granted -> granted.getAuthority().equalsIgnoreCase("faculty"));
+
+    // Redirect based on role
+    if (isStudent) {
+        setDefaultTargetUrl("/student/user");
+    } else if (isFaculty) {
+        setDefaultTargetUrl("/faculty/user");
+    } else {
+        setDefaultTargetUrl("/error"); // Redirect to a default page if neither role is present
+    }
+
+    super.onAuthenticationSuccess(request, response, authentication);
+}

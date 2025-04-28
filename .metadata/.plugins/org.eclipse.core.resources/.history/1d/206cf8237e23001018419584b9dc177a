@@ -1,0 +1,7 @@
+package com.example.ErpManageSys;
+
+public class MyUserDetailService implements UserDetailsService{
+	
+	@Autowired
+	private UserRepository repository;
+}

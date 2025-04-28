@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Student ERP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .student-info div {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+        .student-info div:last-child {
+            margin-right: 0;
+        }
+        .logout-btn {
+            background-color: #FF5733;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .logout-btn:hover {
+            background-color: #e04e2a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Student ERP System</h1>
+    </header>
+    
+    <div class="container">
+        <h2>Welcome, Student!</h2>
+        <p>Below are your details:</p>
+        
+        <div class="student-info">
+            <div>
+                <h3>Name:</h3>
+                <p>John Doe</p>
+            </div>
+            <div>
+                <h3>Course:</h3>
+                <p>Computer Science</p>
+            </div>
+            <div>
+                <h3>Section:</h3>
+                <p>A</p>
+            </div>
+        </div>
+        
+        <div class="student-info">
+            <div>
+                <h3>Student ID:</h3>
+                <p>12345678</p>
+            </div>
+            <div>
+                <h3>Email:</h3>
+                <p>johndoe@example.com</p>
+            </div>
+        </div>
+
+        <a href="logout.html" class="logout-btn">Logout</a>
+    </div>
+</body>
+</html>

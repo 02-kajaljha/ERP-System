@@ -1,0 +1,7 @@
+package com.example.ErpManageSys;
+
+public interface UserRepository extends JpaRepository<User,Integer>{
+	
+	Optional<User> findByUsername(int id);
+	
+}

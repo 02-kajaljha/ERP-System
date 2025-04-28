@@ -1,0 +1,20 @@
+package com.example.ErpManageSys;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.Optional;
+
+@Service 
+public class StudentService {
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    public Student getStudentById(int id) {
+        // Get the student wrapped in Optional
+        Optional<Student> studentOptional = studentRepository.findById(id);
+
+        // If present, return the student; otherwise, return null
+        return studentOptional.orElse(null);
+    }
+}

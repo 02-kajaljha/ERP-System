@@ -1,0 +1,36 @@
+package com.example.ErpManageSys;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class StudentController {
+
+    @Autowired
+    private StudentService studentService;
+
+    @GetMapping("/details")
+    public ResponseEntity<?> getStudentDetails() {
+        // Get logged-in user from security context
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String studentId = loggedInUser.getUsername();
+        
+        // Log the student ID
+        System.out.println("Fetching details for student with ID: " + studentId);
+
+        // Fetch student details from service
+        Student student = studentService.getStudentById(Integer.parseInt(studentId));
+
+        // Log the student object to check if it's null or not
+        if (student != null) {
+            System.out.println("Student found: " + student);
+            return ResponseEntity.ok(student);  // Return the student details as a successful response
+        } else {
+            System.out.println("Student not found.");
+            return ResponseEntity.notFound().build();  // Return 404 if student is not found
+        }
+    }
+}

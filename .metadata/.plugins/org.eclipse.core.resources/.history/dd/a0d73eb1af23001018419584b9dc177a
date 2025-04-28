@@ -1,0 +1,167 @@
+package com.example.ErpManageSys;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
+//import javax.persistence.Lob;
+ 
+@Entity
+public class Student {
+
+    @Id
+    private int id;
+
+    private String username;
+    private String email;
+    
+    @Lob
+    private byte[] photo;  // Assuming the photo is stored as a byte array in the database
+
+    private String fatherName;
+    private String motherName;
+    
+    private String dob; // You may want to use a `LocalDate` or `Date` type here depending on your preference
+    
+    private String college;
+    private String course;
+    private String year;
+    private String branch;
+    private String section;
+    private String classRollNo;
+    private String universityRollNo;
+    private double highSchoolPercentage;
+    private double intermediatePercentage;
+
+    // Getters and Setters
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
+
+    public String getFatherName() {
+        return fatherName;
+    }
+
+    public void setFatherName(String fatherName) {
+        this.fatherName = fatherName;
+    }
+
+    public String getMotherName() {
+        return motherName;
+    }
+
+    public void setMotherName(String motherName) {
+        this.motherName = motherName;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getCollege() {
+        return college;
+    }
+
+    public void setCollege(String college) {
+        this.college = college;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public String getClassRollNo() {
+        return classRollNo;
+    }
+
+    public void setClassRollNo(String classRollNo) {
+        this.classRollNo = classRollNo;
+    }
+
+    public String getUniversityRollNo() {
+        return universityRollNo;
+    }
+
+    public void setUniversityRollNo(String universityRollNo) {
+        this.universityRollNo = universityRollNo;
+    }
+
+    public double getHighSchoolPercentage() {
+        return highSchoolPercentage;
+    }
+
+    public void setHighSchoolPercentage(double highSchoolPercentage) {
+        this.highSchoolPercentage = highSchoolPercentage;
+    }
+
+    public double getIntermediatePercentage() {
+        return intermediatePercentage;
+    }
+
+    public void setIntermediatePercentage(double intermediatePercentage) {
+        this.intermediatePercentage = intermediatePercentage;
+    }
+}

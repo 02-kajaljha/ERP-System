@@ -1,0 +1,18 @@
+package com.example.ErpManageSys;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController 
+public class StudentRegistration {
+
+	@Autowired
+	StudentRepository studentRepository;
+	
+	@PostMapping("/register/student")
+	public Student createUser(@RequestBody Student student) {
+		return studentRepository.save(student); 
+	}
+}
