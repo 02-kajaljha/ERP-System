@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <h1>Student Details</h1>
+    
+    <div th:if="${student != null}">
+        <p><strong>ID:</strong> <span th:text="${student.id}"></span></p>
+        <p><strong>Name:</strong> <span th:text="${student.name}"></span></p>
+        <p><strong>Father's Name:</strong> <span th:text="${student.fathersname}"></span></p>
+        <p><strong>Mother's Name:</strong> <span th:text="${student.mothersname}"></span></p>
+        <p><strong>DOB:</strong> <span th:text="${student.dob}"></span></p>
+        <p><strong>College:</strong> <span th:text="${student.college}"></span></p>
+        <p><strong>Course:</strong> <span th:text="${student.course}"></span></p>
+        <p><strong>Year:</strong> <span th:text="${student.year}"></span></p>
+        <p><strong>Branch:</strong> <span th:text="${student.branch}"></span></p>
+        <p><strong>Section:</strong> <span th:text="${student.section}"></span></p>
+        <p><strong>Roll No:</strong> <span th:text="${student.rollno}"></span></p>
+        <p><strong>High School:</strong> <span th:text="${student.highschool}"></span></p>
+        <p><strong>Intermediate:</strong> <span th:text="${student.intermediate}"></span></p>
+    </div>
+
+    <div th:if="${student == null}">
+        <p>No student found with this ID.</p>
+    </div>
+</body>
+</html>

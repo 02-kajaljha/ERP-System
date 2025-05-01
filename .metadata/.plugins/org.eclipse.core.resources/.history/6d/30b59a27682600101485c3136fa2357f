@@ -1,0 +1,28 @@
+package com.example.ErpManageSys;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class StudentController {
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    // Updated method to use PathVariable for userId
+    @GetMapping("/student/{userId}")
+    public String showStudentDashboard(@PathVariable Integer userId, Model model) {
+        // Fetch student details using the userId passed in the URL
+        Student student = studentRepository.findById(userId).orElse(null);
+
+        if (student != null) {
+            model.addAttribute("student", student);
+            return "student"; // Return the view name for student dashboard
+        } else {
+            return "error"; // Return error page if student not found
+        }
+    }
+}

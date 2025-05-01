@@ -1,73 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - Student ERP</title>
+    <title>Student Dashboard</title>
     <style>
-        * {
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #eef2f7;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f7f9fc;
-            color: #333;
-            line-height: 1.6;
-        }
+
         header {
-            background-color: #007BFF;
+            background: linear-gradient(to right, #007bff, #0056b3);
             color: white;
             text-align: center;
-            padding: 30px 0;
-            border-bottom: 3px solid #0056b3;
+            padding: 25px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
+
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 30px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .info-card {
             padding: 20px;
-            background-color: white;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            background: #f9f9f9;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-        .welcome-message {
-            text-align: center;
-            color: #007BFF;
-            font-size: 1.5em;
+
+        h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            color: #333;
         }
-        .logout-btn {
+
+        p {
+            font-size: 15px;
+            color: #555;
+        }
+
+        .button {
             display: inline-block;
-            background-color: #FF5733;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 25px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 1.1em;
             margin-top: 30px;
-            transition: background-color 0.3s ease;
+            padding: 12px 24px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s;
         }
-        .logout-btn:hover {
-            background-color: #e04e2a;
+
+        .button:hover {
+            background-color: #218838;
         }
-        .logout-btn:active {
-            background-color: #c83e1d;
+
+        .error-message {
+            text-align: center;
+            color: red;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .student-info {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to the Student ERP System</h1>
+        <h1>Welcome to the Student Dashboard</h1>
     </header>
-    
+
     <div class="container">
-        <p class="welcome-message">Welcome to your Student Dashboard!</p>
-        <a href="/logout" class="logout-btn">Logout</a>
-    </div>
-</body>
-</html>
+        <div th:if="${student != null}">
+            <div class="student-info">
+                <div class="info-card">
+                    <h3>ID</h3>
+                    <p th:text="${student.id}">ID</p>
+                </div>
+                <div class="info-card">
+                    <h3>Name</h3>
+                    <p th:text="${student.name}">Name</p>
+                </div>
+                <div class="info-card">
+                    <h3>Father's Name</h3>
+                    <p th:text="${student.fathersname}">Father</p>
+                </div>
+                <div class="info-card">
+                    <h3>Mother's Name</h3>
+                    <p th:text="${student.mothersname}">Mother</p>
+                </div>
+                <div class="info-card">
+                    <h3>DOB</h3>
+                    <p th:text="${student.dob}">DOB</p>
+                </div>
+                <div class="info-card">
+                    <h3>College</h3>
+                    <p th:text="${student.college}">College</p>
+                </div>
+                <div class="info-card">
+                    <h3>Course</h3>
+                    <p th:text="${student.course}">Course</p>
+                </div>
+                <div class="info-card">
+                    <h3>Year</h3>
+                    <p th:text="${student.year}">Year</p>
+                </div>
+                <div class="info-card">
+                    <h3>Branch</h3>
+                    <p th:text="${student.branch}">Branch</p>
+                </div>
+                <div class="info-card">
+                    <h3>Section</h3>
+                    <p th:text="${student.section}">Section</p>
+                </div>
+                <div class="info-card">
+                    <h3>Roll No</h3>
+                    <p th:text="${student.rollno}">Roll</p>
+                </div>
+                <div class="info-card">
+                    <h3>High School</h3>
+                    <p th:text="${student.highschool}">High School</p>
+                </div>
+                <div class="info-card">
+                    <h3>Intermediate</h3>
+                    <p th:text="${student.intermediate}">Intermediate</p>
+                </div>
+            </div>
+            <a href="/students" class="button">Back to Student List</a>

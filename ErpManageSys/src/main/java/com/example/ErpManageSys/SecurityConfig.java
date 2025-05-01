@@ -35,10 +35,11 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/student/user").hasRole("STUDENT")
-                .requestMatchers("/faculty/user").hasRole("FACULTY") 
+                .requestMatchers("/student/**").hasRole("STUDENT")
+                .requestMatchers("/faculty/**").hasRole("FACULTY") 
                 .requestMatchers("/register/user").permitAll()
                 .requestMatchers("/register/student").permitAll()
+                .requestMatchers("/register/faculty").permitAll()
                 .anyRequest()
                 .authenticated()
             )

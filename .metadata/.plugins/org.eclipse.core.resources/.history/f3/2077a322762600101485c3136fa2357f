@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    
+	<style>
+	    body {
+	        font-family: 'Segoe UI', sans-serif;
+	        background: #f0f2f5;
+	        margin: 0;
+	    }
+
+	    .container {
+	        width: 90%;
+	        max-width: 1100px;
+	        margin: 40px auto;
+	        background: white;
+	        border-radius: 12px;
+	        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+	        padding: 30px;
+	    }
+
+	    h1 {
+	        text-align: center;
+	        margin-bottom: 30px;
+	        color: #007bff;
+	    }
+
+	    .student-details {
+	        display: grid;
+	        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	        gap: 20px;
+	    }
+
+	    .student-details p {
+	        font-size: 15px;
+	        background: #f7f9fb;
+	        padding: 12px 15px;
+	        border-left: 5px solid #007bff;
+	        border-radius: 6px;
+	    }
+
+	    .student-details strong {
+	        color: #333;
+	        font-weight: 600;
+	    }
+
+	    .button {
+	        display: block;
+	        margin: 30px auto 0;
+	        padding: 12px 25px;
+	        background-color: #007bff;
+	        color: #fff;
+	        border-radius: 6px;
+	        text-align: center;
+	        font-weight: bold;
+	        text-decoration: none;
+	        transition: 0.3s;
+	    }
+
+	    .button:hover {
+	        background-color: #0056b3;
+	    }
+
+	    .error-message {
+	        text-align: center;
+	        color: red;
+	        font-size: 18px;
+	    }
+	</style>
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>Student Dashboard</h1>
+
+        <!-- Check if student object is not null -->
+        <div th:if="${student != null}">
+            <div class="student-details">
+                <p><strong>ID:</strong> <span th:text="${student.id}"></span></p>
+                <p><strong>Name:</strong> <span th:text="${student.name}"></span></p>
+                <p><strong>Father's Name:</strong> <span th:text="${student.fathersname}"></span></p>
+                <p><strong>Mother's Name:</strong> <span th:text="${student.mothersname}"></span></p>
+                <p><strong>DOB:</strong> <span th:text="${student.dob}"></span></p>
+                <p><strong>College:</strong> <span th:text="${student.college}"></span></p>
+                <p><strong>Course:</strong> <span th:text="${student.course}"></span></p>
+                <p><strong>Year:</strong> <span th:text="${student.year}"></span></p>
+                <p><strong>Branch:</strong> <span th:text="${student.branch}"></span></p>
+                <p><strong>Section:</strong> <span th:text="${student.section}"></span></p>
+                <p><strong>Roll No:</strong> <span th:text="${student.rollno}"></span></p>
+                <p><strong>High School:</strong> <span th:text="${student.highschool}"></span></p>
+                <p><strong>Intermediate:</strong> <span th:text="${student.intermediate}"></span></p>
+            </div>
+
+            <div class="text-center">
+                <a href="/students" class="button">Go back to students list</a>
+            </div>
+        </div>
+
+        <!-- Message when student is not found -->
+        <div th:if="${student == null}" class="error-message">
+            <p>No student found with this ID.</p>
+            <a href="/students" class="button">Go back to students list</a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+package com.example.ErpManageSys;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Faculty {
+
+	@Id
+	int id;
+	
+	String name;
+	String dob;
+	String gender;
+	String email;
+	String contact;
+	String join_date;
+	String qualification;
+	String department;
+	String designation;
+	
+}

@@ -27,7 +27,7 @@ public class MyUserDetailService implements UserDetailsService {
 
                 // Add ROLE_ prefix to the roles (assuming role is stored as 'student', 'faculty', etc.)
                 String role = userObj.getRole(); // This should be 'student', 'faculty', etc.
-                String roleName = "ROLE_" + role.toUpperCase(); // Prepend ROLE_ and convert to uppercase
+                String roleName = "ROLE_" + role.trim().toUpperCase(); // Prepend ROLE_ and convert to uppercase
 
                 // Return UserDetails with the correct role format
                 return org.springframework.security.core.userdetails.User.builder()

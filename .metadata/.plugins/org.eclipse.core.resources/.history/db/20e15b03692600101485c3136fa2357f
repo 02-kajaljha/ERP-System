@@ -1,0 +1,39 @@
+package com.example.ErpManageSys;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class StudentController {
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @GetMapping("/student/user")
+    public String showStudentDashboard(Model model) {
+        // Get the authenticated user's ID
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userIdString = authentication.getName(); // Assumed to be the user ID (username)
+        Integer userId;
+
+        try {
+            // Parse the user ID from the authentication
+            userId = Integer.parseInt(userIdString);
+        } catch (NumberFormatException e) {
+            return "error"; // Return error page if the user ID is not valid
+        }
+
+        // Fetch the student from the database
+        Student student = studentRepository.findById(userId).orElse(null);
+
+        // Add the student object to the model
+        model.addAttribute("student", student);
+
+        // Return the view name (Thymeleaf template)
+        return "student"; // This will render the student.html page
+    }
+}

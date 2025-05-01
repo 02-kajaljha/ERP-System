@@ -1,62 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome - Faculty ERP</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #28a745;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        h1 {
-            margin: 0;
-        }
-        .container {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-        .faculty-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        .faculty-info div {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            margin-right: 10px;
-        }
-        .faculty-info div:last-child {
-            margin-right: 0;
-        }
-        .logout-btn {
-            background-color: #FF5733;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            display: inline-block;
-            text-decoration: none;
-            margin-top: 20px;
-        }
-        .logout-btn:hover {
-            background-color: #e04e2a;
-        }
-    </style>
+	<!-- Only include updated style and layout parts, HTML structure can remain -->
+	<style>
+	    body {
+	        font-family: 'Segoe UI', sans-serif;
+	        background: #eef2f7;
+	        margin: 0;
+	        padding: 0;
+	    }
+
+	    header {
+	        background: linear-gradient(to right, #28a745, #218838);
+	        color: white;
+	        text-align: center;
+	        padding: 25px 0;
+	        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	    }
+
+	    .container {
+	        max-width: 1000px;
+	        margin: 30px auto;
+	        background: #fff;
+	        padding: 30px;
+	        border-radius: 15px;
+	        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+	    }
+
+	    .faculty-info {
+	        display: grid;
+	        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	        gap: 20px;
+	    }
+
+	    .faculty-info div {
+	        padding: 20px;
+	        border-radius: 10px;
+	        background: #f9f9f9;
+	        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+	    }
+
+	    h3 {
+	        margin: 0 0 8px;
+	        font-size: 16px;
+	        color: #444;
+	    }
+
+	    p {
+	        font-size: 15px;
+	        color: #555;
+	    }
+
+	    .logout-btn {
+	        display: inline-block;
+	        margin-top: 25px;
+	        padding: 12px 24px;
+	        background-color: #dc3545;
+	        color: white;
+	        text-decoration: none;
+	        border-radius: 8px;
+	        font-weight: bold;
+	        transition: background 0.3s;
+	    }
+
+	    .logout-btn:hover {
+	        background-color: #c82333;
+	    }
+	</style>
+
 </head>
 <body>
     <header>
@@ -64,36 +78,53 @@
     </header>
     
     <div class="container">
-        <h2>Welcome, Faculty Member!</h2>
+        <h2>Welcome, <span th:text="${faculty.name}">Faculty Member</span>!</h2>
         <p>Below are your details:</p>
         
         <div class="faculty-info">
             <div>
-                <h3>Name:</h3>
-                <p>Dr. Jane Smith</p>
-            </div>
-            <div>
-                <h3>Department:</h3>
-                <p>Computer Science</p>
-            </div>
-            <div>
-                <h3>Designation:</h3>
-                <p>Professor</p>
-            </div>
-        </div>
-        
-        <div class="faculty-info">
-            <div>
                 <h3>Faculty ID:</h3>
-                <p>98765432</p>
+                <p th:text="${faculty.id}">ID</p>
+            </div>
+            <div>
+                <h3>Name:</h3>
+                <p th:text="${faculty.name}">Name</p>
+            </div>
+            <div>
+                <h3>Date of Birth:</h3>
+                <p th:text="${faculty.dob}">DOB</p>
+            </div>
+            <div>
+                <h3>Gender:</h3>
+                <p th:text="${faculty.gender}">Gender</p>
             </div>
             <div>
                 <h3>Email:</h3>
-                <p>janesmith@university.com</p>
+                <p th:text="${faculty.email}">Email</p>
+            </div>
+            <div>
+                <h3>Contact:</h3>
+                <p th:text="${faculty.contact}">Contact</p>
+            </div>
+            <div>
+                <h3>Join Date:</h3>
+                <p th:text="${faculty.join_date}">Join Date</p>
+            </div>
+            <div>
+                <h3>Qualification:</h3>
+                <p th:text="${faculty.qualification}">Qualification</p>
+            </div>
+            <div>
+                <h3>Department:</h3>
+                <p th:text="${faculty.department}">Department</p>
+            </div>
+            <div>
+                <h3>Designation:</h3>
+                <p th:text="${faculty.designation}">Designation</p>
             </div>
         </div>
 
-        <a href="logout.html" class="logout-btn">Logout</a>
+        <a href="/logout" class="logout-btn">Logout</a>
     </div>
 </body>
 </html>

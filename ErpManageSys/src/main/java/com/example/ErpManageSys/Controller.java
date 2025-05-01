@@ -9,13 +9,13 @@ public class Controller {
         return "custom_login"; 
     }
     
-    @GetMapping("/student/user")
-    public String handleStudent() {
-    	return "student";
-    }
+//    @GetMapping("/student/user")
+//    public String handleStudent() {
+//    	return "student";
+//    }
     
-    @GetMapping("/faculty/user")
-    public String handleFaculty() {
-    	return "faculty";
-    }
+//    @GetMapping("/faculty/user")
+//    public String handleFaculty() {
+//    	return "faculty";
+//    }
 }

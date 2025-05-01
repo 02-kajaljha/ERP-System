@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Student ERP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 3px solid #0056b3;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .welcome-message {
+            text-align: center;
+            color: #007BFF;
+            font-size: 1.5em;
+        }
+        .logout-btn {
+            display: inline-block;
+            background-color: #FF5733;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.1em;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+        .logout-btn:hover {
+            background-color: #e04e2a;
+        }
+        .logout-btn:active {
+            background-color: #c83e1d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Student ERP System</h1>
+    </header>
+    
+    <div class="container">
+        <p class="welcome-message">Welcome to your Student Dashboard!</p>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+</body>
+</html>

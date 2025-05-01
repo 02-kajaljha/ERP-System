@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Faculty ERP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .faculty-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .faculty-info div {
+            flex: 1 1 30%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 5px;
+        }
+        .logout-btn {
+            background-color: #FF5733;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .logout-btn:hover {
+            background-color: #e04e2a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Faculty ERP System</h1>
+    </header>
+    
+    <div class="container">
+        <h2>Welcome, <span th:text="${faculty.name}">Faculty Member</span>!</h2>
+        <p>Below are your details:</p>
+        
+        <div class="faculty-info">
+            <div>
+                <h3>Faculty ID:</h3>
+                <p th:text="${faculty.id}">ID</p>
+            </div>
+            <div>
+                <h3>Name:</h3>
+                <p th:text="${faculty.name}">Name</p>
+            </div>
+            <div>
+                <h3>Date of Birth:</h3>
+                <p th:text="${faculty.dob}">DOB</p>
+            </div>
+            <div>
+                <h3>Gender:</h3>
+                <p th:text="${faculty.gender}">Gender</p>
+            </div>
+            <div>
+                <h3>Email:</h3>
+                <p th:text="${faculty.email}">Email</p>
+            </div>
+            <div>
+                <h3>Contact:</h3>
+                <p th:text="${faculty.contact}">Contact</p>
+            </div>
+            <div>
+                <h3>Join Date:</h3>
+                <p th:text="${faculty.join_date}">Join Date</p>
+            </div>
+            <div>
+                <h3>Qualification:</h3>
+                <p th:text="${faculty.qualification}">Qualification</p>
+            </div>
+            <div>
+                <h3>Department:</h3>
+                <p th:text="${faculty.department}">Department</p>
+            </div>
+            <div>
+                <h3>Designation:</h3>
+                <p th:text="${faculty.designation}">Designation</p>
+            </div>
+        </div>
+
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+</body>
+</html>

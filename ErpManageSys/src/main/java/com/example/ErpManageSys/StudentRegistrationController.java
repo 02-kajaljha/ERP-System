@@ -1,0 +1,22 @@
+package com.example.ErpManageSys;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class StudentRegistrationController {
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    @Autowired
+    private PasswordEncoder encoder;
+
+    @PostMapping("/register/student")
+    public Student registerStudent(@RequestBody Student student) {
+        return studentRepository.save(student);
+    }
+}
